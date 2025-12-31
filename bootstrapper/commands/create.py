@@ -1,4 +1,5 @@
 import click
+from bootstrapper.utils.helpers import copy_template
 
 @click.command()
 @click.argument("name")
@@ -6,4 +7,8 @@ import click
 @click.option("--docker", is_flag=True, help="Include Docker setup")
 def create(name, type, docker):
     """Create a new project"""
-    click.echo(f"Creating {type} project named {name} with docker={docker}")
+    copy_template(type, name)
+    if docker:
+        print("Docker integration will be added later...")
+    # click.echo(f"Creating {type} project named {name} with docker={docker}")
+    click.echo(f"Creating {type} project named {name} without Docker support for now")
